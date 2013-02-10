@@ -1,0 +1,9 @@
+<input type="checkbox" id="task<%= @task.get('id') %>_done"
+<% if @task.get('done') :%>
+checked="true"
+<% end %>
+/>
+
+<span class="task_content" id="task<%= @task.get('id') %>_content">
+<%= @task.get('content') %>
+</span>

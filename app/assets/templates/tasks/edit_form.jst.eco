@@ -1,0 +1,1 @@
+<input id="edit_task_content" name="name" type="text" value="<%= @value.get('content') %>" />
