@@ -5,8 +5,14 @@ class Todos.Views.TasksIndex extends Backbone.View
     'submit #new_task' : 'addTask'
   
   initialize: ->
+    Backbone.Events.on('reload', @reload, this)
     @collection.on('reset', @render, this)
     @collection.on('add', @appendTasks, this)
+
+  reload: ->
+    console.log 'Reload !'
+    @collection.fetch()
+    @render
   
   render: ->
     $(@el).html(@template())

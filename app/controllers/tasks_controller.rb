@@ -42,8 +42,15 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
 
+    save = @task.save
+    PrivatePub.publish_to(
+      "/tasks", 
+      "Backbone.Events.trigger('reload');"
+    )
+
     respond_to do |format|
-      if @task.save
+      if save
+        logger.debug 'Saved !!!!!!!!!!!!!!'
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
